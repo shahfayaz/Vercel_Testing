@@ -11,13 +11,14 @@ app.get("/health", (req, res) => {
     status: "OK",
     message: "Server is healthy",
     data: {
-      uptime: process.uptime(),
+      uptime: new Date(process.uptime() * 1000).toISOString().substr(11, 8),
       memoryUsage: process.memoryUsage(),
       platform: process.platform,
       arch: process.arch,
       nodeVersion: process.version,
       currentWorkingDirectory: process.cwd(),
-      currentTimestamp: Date.now(),
+      currentTimestamp: Date.now().toLocaleString(),
+      developer: "Shah Fayaz Khan",
     },
   });
 });
