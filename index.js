@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3010;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -33,11 +33,15 @@ app.post("/data", (req, res) => {
   res.status(201).json({ message: "Data received", data: { name, value } });
 });
 
-app.get("*", (req, res) => {
+// app.get("*", (req, res) => {
+//   res.status(404).json({ error: "Not Found vercel testing" });
+// });
+
+app.use((req, res) => {
   res.status(404).json({ error: "Not Found vercel testing" });
 });
 
-// Start the server
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
