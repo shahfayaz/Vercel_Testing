@@ -19,8 +19,26 @@ app.get("/health", (req, res) => {
       currentWorkingDirectory: process.cwd(),
       currentTimestamp: Date.now().toLocaleString(),
       developer: "Shah Fayaz Khan",
+      systemInfo: "************************************************************",
+      // Collect request headers for browser & IP info
+      ip: req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress,
+      userAgent: req.headers['user-agent'],
+      acceptLanguage: req.headers['accept-language'],
+      acceptEncoding: req.headers['accept-encoding'],
+      referer: req.headers.referer || req.headers.referrer,
+      origin: req.headers.origin,
+      secChUa: req.headers['sec-ch-ua'],
+      secChUaMobile: req.headers['sec-ch-ua-mobile'],
+      secChUaPlatform: req.headers['sec-ch-ua-platform'],
+      secFetchSite: req.headers['sec-fetch-site'],
+      secFetchMode: req.headers['sec-fetch-mode'],
+      secFetchDest: req.headers['sec-fetch-dest'],
+      connection: req.headers.connection,
+      upgradeInsecureRequests: req.headers['upgrade-insecure-requests'],
+      cacheControl: req.headers['cache-control'],
+      allHeaders: req.headers,
     },
-  });
+  });//  gwledJTxQA5UmwMn
 });
 
 // POST /data - Sample POST endpoint
